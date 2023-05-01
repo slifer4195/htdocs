@@ -20,7 +20,7 @@ if (isset($_POST['id'])) {
 
   if ($conn->query($sql) === TRUE) {
     // Redirect the user to a confirmation page or the previous page
-    header("Location: confirmation_page.php");
+    header("Location: ../pages/Location.php");
     exit;
   } else {
     echo "Error deleting record: " . $conn->error;
