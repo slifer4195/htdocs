@@ -10,16 +10,16 @@ if (isset($_POST["submit"])) {
 
     // error handling
     if (emptyInputItem($itemType, $weight) !== false) {
-        header("location: ../pages/Item.php?error=emptyinput");
+        header("location: ../pages/AdminItem.php?error=emptyinput");
         exit();
     }
     if (invalidWeight($weight) !== false) {
-        header("location: ../pages/Item.php?error=invalidweight");
+        header("location: ../pages/AdminItem.php?error=invalidweight");
         exit();
     }
-    createItem($conn, $userID, $itemType, $weight);
+    createItemAdmin($conn, $userID, $itemType, $weight);
 } else {
-    header("location: ../pages/Item.php");
+    header("location: ../pages/AdminItem.php");
     exit();
 }
 
