@@ -11,6 +11,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
+// aa
 
 // Build the SQL query to select all data from the Location table
 $sql = "SELECT * FROM Location";
