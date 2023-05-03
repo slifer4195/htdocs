@@ -23,14 +23,14 @@
         min-height: 95vh;
     }
 
-    .signup-form {
+    .profile-form {
         border: 2px solid white;
         width: 30%;
         height: 740px;
         background-color: #5CA36C;
     }
 
-    .signup-form h1 {
+    .profile-form h1 {
         text-align: center;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         font-weight: bold;
@@ -41,7 +41,7 @@
         margin-bottom: 45px;
     }
 
-    .signup-form>p {
+    .profile-form>p {
         text-align: center;
         font-size: 21px;
         margin-top: -2px;
@@ -74,7 +74,7 @@
         text-align: center;
     }
 
-    .signup-button {
+    .profile-button {
         margin-top: 20px;
         background-color: white;
         color: #5CA36C;
@@ -83,10 +83,10 @@
         border-color: #5CA36C;
         font-family: 'Mulish', sans-serif;
         font-weight: bold;
-        width: 125px;
+        width: 172px;
     }
 
-    .signup-button>p {
+    .profile-button>p {
         font-family: 'Mulish', sans-serif;
         font-size: 15px;
         font-weight: bold;
@@ -115,8 +115,12 @@
         margin-bottom: 0px;
     }
 
+    .input-type {
+        width: 220px;
+    }
+
     @media only screen and (max-width: 600px) {
-        .signup-form {
+        .profile-form {
             width: 90%;
         }
     }
@@ -125,20 +129,6 @@
 
 <body class="index">
     <div id="fb-root"></div>
-    <script>
-    var password = document.getElementById("password"),
-        passwordRepeat = document.getElementById("passwordRepeat");
-
-    function validatePassword() {
-        if (password.value != passwordRepeat.value) {
-            passwordRepeat.setCustomValidity("Passwords Don't Match");
-        } else {
-            passwordRepeat.setCustomValidity('');
-        }
-    }
-    password.onchange = validatePassword;
-    passwordRepeat.onkeyup = validatePassword;
-    </script>
 
     <header class="header contain-to-grid">
         <?php
@@ -147,9 +137,9 @@
     </header>
 
     <div class="bg">
-        <div class='signup-form'>
-            <h1>Sign Up</h1>
-            <form action="../includes/signup.inc.php" method="post">
+        <div class='profile-form'>
+            <h1>Your Profile</h1>
+            <form action="../includes/profile.inc.php" method="post">
                 <center>
                     <?php
                     if (isset($_GET["error"])) {
@@ -158,47 +148,38 @@
                         }
                     }
                     ?>
-                    <p class="instruction">First Name</p>
-                    <input type="text" name="firstName" style="width: 220px">
-                    <p class="instruction">Last Name</p>
-                    <input type="text" name="lastName" style="width: 220px">
-                    <p class="instruction">Email</p>
-                    <input type="email" name="email" style="width: 220px">
                     <?php
-                    if (isset($_GET["error"])) {
-                        if ($_GET["error"] == "emailtaken") {
-                            echo "<p style= 'color: black; letter-spacing: 0.5px;'>Email is already taken!</p>";
-                        } else if ($_GET["error"] == "invalidemail") {
-                            echo "<p style= 'color: black; letter-spacing: 0.5px;'>Choose a proper email!</p>";
-                        }
+                    // check if the user actullay logged in 
+                    if (isset($_SESSION["useremail"])) {
+                        echo ("<p class='instruction'>First Name</p> 
+                        <input type='text' name='firstName-profile' style='width: 220px'" . "placeholder={$_SESSION['userfirstname']}>");
+                        echo ("<p class='instruction'>Last Name</p>
+                        <input type='text' name='lastName' style='width: 220px'" . "placeholder={$_SESSION['userlastname']}>");
+                        echo ("<p class='instruction'>Email</p>
+                        <input type='email' name='email' style='width: 220px'" . "placeholder={$_SESSION['useremail']}>");
+                        echo ("<p class='instruction'>Age</p>
+                        <input type='text' name='age' style='width: 220px'" . "placeholder={$_SESSION['userage']}>");
+                        echo ("<p class='instruction'>Password</p>
+                            <input type='password' name='password' style='width: 220px'>
+                            <input type='password' name='passwordRepeat' style='width: 220px'
+                                placeholder='Repeat Password'>"
+                        );
+                        echo ("<button type='submit' name='submit' class='profile-button'>
+                        <p>Change Saved</p>
+                    </button>");
                     }
                     ?>
-                    <p class="instruction">Password</p>
-                    <input type="password" id="password" name="password" style="width: 220px">
-                    <input type="password" id="passwordRepeat" name="passwordRepeat" placeholder="Repeat Password"
-                        style="width: 220px">
                     <?php
                     if (isset($_GET["error"])) {
                         if ($_GET["error"] == "passwordsdontmatch") {
                             echo "<p style='color:black'>Passwords do not match!</p>";
-                        }
-                    }
-                    ?>
-                    <p class="instruction">Age</p>
-                    <input type="text" name="age" style="width: 220px">
-                    <?php
-                    if (isset($_GET["error"])) {
-                        if ($_GET["error"] == "invalidage") {
+                        } else if ($_GET["error"] == "emailtaken") {
+                            echo "<p style= 'color: black; letter-spacing: 0.5px;'>Email is already taken!</p>";
+                        } else if ($_GET["error"] == "invalidage") {
                             echo "<p style='color:black'>Invalid age! please enter the number.</p>";
                         }
                     }
                     ?>
-                    <button type="submit" name="submit" class="signup-button">
-                        <p>Sign Up</p>
-                    </button>
-                    <!-- <button type="reset" name="reset" class="reset-button">
-                            <p>Reset</p>
-                        </button> -->
                 </center>
             </form>
         </div>
@@ -229,7 +210,7 @@
                     echo '</script>';
                 } else if ($_GET["error"] == "none") {
                     echo '<script type="text/javascript">';
-                    echo ' alert("You have successfully signed up!")';
+                    echo ' alert("Your change was applied!")';
                     echo '</script>';
                     // echo "<p>You have signed up!</p>";
                 }
