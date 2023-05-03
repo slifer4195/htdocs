@@ -33,7 +33,7 @@
 
     .item-display {
         border: 2px solid white;
-        width: 30%;
+        width: 50%;
         height: 700px;
         background-color: #5CA36C;
     }
@@ -176,51 +176,17 @@
     </header>
 
     <div class="bg-item">
-        <div class='item-form'>
-            <h1>Item</h1>
-            <form action="../includes/item.inc.php" method="post">
-                <center>
-                    <?php
-                    if (isset($_GET["error"])) {
-                        if ($_GET["error"] == "emptyinput") {
-                            echo "<p style='color:black; font-weight:bold; letter-spacing: 0.5px; font-size: 18px;'>Fill in all fields!</p>";
-                        }
-                    }
-                    ?>
-                    <p class="instruction">Item Type</p>
-                    <input type="text" autocomplete="off" name="itemType" style="width: 220px">
-                    <p class="instruction">Weight</p>
-                    <input type="text" autocomplete="off" name="weight" style="width: 220px">
-                    <?php
-                    if (isset($_GET["error"])) {
-                        if ($_GET["error"] == "invalidweight") {
-                            echo "<p style= 'color: black; letter-spacing: 0.5px;'>Please just include numbers!</p>";
-                        }
-                    }
-                    ?>
-                    <button type="submit" name="submit" class="item-button">
-                        <p>Create Item</p>
-                    </button>
-                    <?php
-                    if (isset($_GET["error"])) {
-                        if ($_GET["error"] == "none") {
-                            echo "<p style= 'color: #FFDF9E; letter-spacing: 0.5px;'>Item created :)</p>";
-                        }
-                    }
-                    ?>
-                </center>
-            </form>
-        </div>
-
         <div class='item-display'>
-            <h1>Your Item List</h1>
+            <h1>User Account List</h1>
             <center>
                 <table class="item-table">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Item Type</th>
-                            <th scope="col">Item Weight</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Age</th>
                             <th scope="col">Update</th>
                             <th scope="col">Delete</th>
                         </tr>
@@ -238,23 +204,28 @@
                             die("Connection failed: " . mysqli_connect_error());
                         }
 
-                        $sql = "SELECT * FROM Item";
+                        $sql = "SELECT * FROM Users";
                         $result = mysqli_query($conn, $sql);
                         if ($result) {
                             while ($row = mysqli_fetch_assoc($result)) {
-                                $ItemID = $row['ItemID'];
-                                $ItemType = $row['ItemType'];
-                                $ItemWeight = $row['ItemWeight'];
+                                $UserID = $row['UserID'];
+                                $FirstName = $row['FirstName'];
+                                $LastName = $row['LastName'];
+                                $Email = $row['Email'];
+                                $Age = $row['Age'];
+
                                 echo '
                                 <tr>
-                                <th scope="row">' . $ItemID . '</th>
-                                <td>' . $ItemType . '</td>
-                                <td>' . $ItemWeight . ' lb</td>
+                                <th scope="row">' . $UserID . '</th>
+                                <td>' . $FirstName . '</td>
+                                <td>' . $LastName . '</td>
+                                <td>' . $Email . '</td>
+                                <td>' . $Age . '</td>
                                 <center>
-                                <td><a class="update-feature" href="../includes/itemUpdate.inc.php? updateid=' . $ItemID . ' & weight=' . $ItemWeight . ' & type=' . $ItemType . '">Update</a></td>
+                                <td><a class="update-feature" href="../includes/userUpdate.inc.php? updateid=' . $UserID . ' & firstname=' . $FirstName . ' & lastname=' . $LastName . ' & email=' . $Email . ' & age=' . $Age . '">Update</a></td>
                                 </center>
                                 <center>
-                                <td><a class="delete-feature" href="../includes/itemDelete.inc.php? deleteid=' . $ItemID . '">Delete</a></td>
+                                <td><a class="delete-feature" href="../includes/userDelete.inc.php? deleteid=' . $UserID . '">Delete</a></td>
                                 </center>
                                 </tr> 
                                 ';

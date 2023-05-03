@@ -7,8 +7,6 @@
             font-family: 'Times New Roman', Times, serif
         }
     </style>
-
-
 </head>
 
 <?php
@@ -24,23 +22,28 @@ if (!$conn) {
 }
 
 $id = $_GET['updateid'];
-$weight = $_GET["weight"];
-$type = $_GET["type"];
+$FirstName = $_GET["firstname"];
+$LastName = $_GET["lastname"];
+$Email = $_GET["email"];
+$Age = $_GET["age"];
+
 
 if (isset($_POST["submit"])) {
-    $itemtype = $_POST["item-update"];
-    $ItemWeight = $_POST["weight-update"];
+    $firstname = $_POST["firstname-update"];
+    $lastname = $_POST["lastname-update"];
+    $email = $_POST["email-update"];
+    $age = $_POST["age-update"];
 
-    if ($ItemWeight == "") {
-        $ItemWeight = $weight;
+    if ($age == "") {
+        $age = $Age;
     }
 
-    $sql = "UPDATE Item SET ItemType= '$itemtype', ItemWeight = '$ItemWeight' WHERE ItemID = '$id'";
+    $sql = "UPDATE Users SET FirstName= '$firstname', LastName = '$lastname', Email = '$email', Age ='$age' WHERE UserID = '$id'";
 
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
-        header("location: ../pages/item.php");
+        header("location: ../pages/AdminAccount.php");
         exit();
     } else {
         die(mysqli_error($conn));
@@ -52,10 +55,15 @@ if (isset($_POST["submit"])) {
     <br><br><br>
     <form method="post">
         <center>
-            <p class="instruction">Item Type</p>
-            <input type="text" name="item-update" <?php echo "value='$type'" ?> style="width: 220px">
-            <p class="instruction">Weight</p>
-            <input type="text" name="weight-update" <?php echo "value='$weight'" ?> style="width: 220px">
+            <p class="instruction">First Name</p>
+            <input type="text" name="firstname-update" <?php echo "value='$FirstName'" ?> style="width: 220px">
+            <p class="instruction">Last Name</p>
+            <input type="text" name="lastname-update" <?php echo "value='$LastName'" ?> style="width: 220px">
+            <p class="instruction">Email</p>
+            <input type="text" name="email-update" <?php echo "value='$Email'" ?> style="width: 220px">
+            <p class="instruction">Age</p>
+            <input type="text" name="age-update" <?php echo "value='$Age'" ?> style="width: 220px">
+
             <?php
             if (isset($_GET["error"])) {
                 if ($_GET["error"] == "invalidweight") {
@@ -63,6 +71,7 @@ if (isset($_POST["submit"])) {
                 }
             }
             ?>
+
             <br><br><br>
             <button type="submit" name="submit" class="update-button">
                 <p>Update</p>

@@ -20,7 +20,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        min-height: 95vh;
+        min-height: 100vh;
     }
 
     .profile-form {
@@ -152,16 +152,16 @@
                     // check if the user actullay logged in 
                     if (isset($_SESSION["useremail"])) {
                         echo ("<p class='instruction'>First Name</p> 
-                        <input type='text' name='firstName-profile' style='width: 220px'" . "placeholder={$_SESSION['userfirstname']}>");
+                        <input type='text' name='firstName-profile' style='width: 220px'" . "value={$_SESSION['userfirstname']}>");
                         echo ("<p class='instruction'>Last Name</p>
-                        <input type='text' name='lastName' style='width: 220px'" . "placeholder={$_SESSION['userlastname']}>");
+                        <input type='text' name='lastName-profile' style='width: 220px'" . "value={$_SESSION['userlastname']}>");
                         echo ("<p class='instruction'>Email</p>
-                        <input type='email' name='email' style='width: 220px'" . "placeholder={$_SESSION['useremail']}>");
+                        <input type='email' name='email-profile' style='width: 220px'" . "placeholder={$_SESSION['useremail']}>");
                         echo ("<p class='instruction'>Age</p>
-                        <input type='text' name='age' style='width: 220px'" . "placeholder={$_SESSION['userage']}>");
+                        <input type='text' name='age-profile' style='width: 220px'" . "value={$_SESSION['userage']}>");
                         echo ("<p class='instruction'>Password</p>
-                            <input type='password' name='password' style='width: 220px'>
-                            <input type='password' name='passwordRepeat' style='width: 220px'
+                            <input type='password' name='password-profile' style='width: 220px'>
+                            <input type='password' name='passwordRepeat-profile' style='width: 220px'
                                 placeholder='Repeat Password'>"
                         );
                         echo ("<button type='submit' name='submit' class='profile-button'>

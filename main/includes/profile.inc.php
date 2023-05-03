@@ -2,11 +2,11 @@
 
 if (isset($_POST["submit"])) {
     $firstName = $_POST["firstName-profile"];
-    // $lastName = $_POST["lastName"];
-    // $email = $_POST["email"];
+    $lastName = $_POST["lastName-profile"];
+    $email = $_POST["email-profile"];
     // $password = $_POST["password"];
     // $passwordRepeat = $_POST["passwordRepeat"];
-    // $age = $_POST["age"];
+    $age = $_POST["age-profile"];
 
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
@@ -25,7 +25,7 @@ if (isset($_POST["submit"])) {
         exit();
     }
 
-    updateProfile($conn, $firstName);
+    updateProfile($conn, $firstName, $lastName, $email, $age);
 } else {
     header("location: ../pages/Profile.php");
     exit();
