@@ -149,19 +149,35 @@ function invalidWeight($weight)
     return $result;
 }
 
-function createItem($conn, $itemType, $weight)
+function createItem($conn, $userID, $itemType, $weight)
 {
-    $sql = "INSERT INTO Item (ItemType, ItemWeight) VALUES (?, ?);";
+    $sql = "INSERT INTO Item (UserID, ItemType, ItemWeight) VALUES (?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../pages/Item.php?error=stmtfailed");
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "ss", $itemType, $weight);
+    mysqli_stmt_bind_param($stmt, "iss", $userID, $itemType, $weight);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ../pages/Item.php?error=none");
+    exit();
+}
+
+function createItemAdmin($conn, $userID, $itemType, $weight)
+{
+    $sql = "INSERT INTO Item (UserID, ItemType, ItemWeight) VALUES (?, ?, ?);";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../pages/AdminItem.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "iss", $userID, $itemType, $weight);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: ../pages/AdminItem.php?error=none");
     exit();
 }
 

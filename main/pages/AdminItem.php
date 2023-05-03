@@ -1,5 +1,39 @@
 <?php
 session_start();
+// Connect to the database
+$serverName = "localhost";
+$dBUsername = "root";
+$dBPassword = "";
+$dBName = "AnyWhere";
+
+$conn = mysqli_connect($serverName, $dBUsername, $dBPassword, $dBName);
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// aa
+
+// Build the SQL query to select all data from the Location table
+$sql = "SELECT * FROM Users";
+// $sql2 = "SELECT * FROM Activity";
+
+// Execute the query and store the result in a variable
+$result = mysqli_query($conn, $sql);
+// $result2 = mysqli_query($conn, $sql2);
+
+// Check if there are any rows in the result
+if (mysqli_num_rows($result) >= 0) {
+  // Initialize an empty array to store the data
+  $data = array();
+
+  // Loop through the result and store each row in the data array
+  while ($row = mysqli_fetch_assoc($result)) {
+    $data[] = $row;
+  }
+} else {
+  echo "No data found.";
+}
 ?>
 
 <!doctype html>
@@ -182,7 +216,7 @@ session_start();
     <div class="bg-item">
         <div class='item-form'>
             <h1>Item</h1>
-            <form action="../includes/item.inc.php" method="post">
+            <form action="../includes/adminitem.inc.php" method="post">
                 <center>
                     <?php
                     if (isset($_GET["error"])) {
@@ -191,11 +225,19 @@ session_start();
                         }
                     }
                     ?>
+
+                    <p class="instruction">User ID</p>
+                    <label for="user-dropdown">Select a User ID:</label>
+                    <select id="user-dropdown" name="id">
+                        <?php foreach ($data as $row) { ?>
+                            <option value="<?php echo $row['UserID']; ?>"><?php echo $row['UserID']; ?></option>
+                        <?php } ?>
+                    </select>
+
                     <p class="instruction">Item Type</p>
                     <input type="text" autocomplete="off" name="itemType" style="width: 220px">
                     <p class="instruction">Weight</p>
                     <input type="text" autocomplete="off" name="weight" style="width: 220px">
-                    <input type="hidden" name = "id" value="<?php echo $_SESSION['userid']; ?>">
                     <?php
                     if (isset($_GET["error"])) {
                         if ($_GET["error"] == "invalidweight") {
@@ -223,6 +265,7 @@ session_start();
                 <table class="item-table">
                     <thead>
                         <tr>
+                            <th scope="col">User ID</th>
                             <th scope="col">Item Type</th>
                             <th scope="col">Item Weight</th>
                             <th scope="col">Update</th>
@@ -242,22 +285,24 @@ session_start();
                             die("Connection failed: " . mysqli_connect_error());
                         }
 
-                        $sql = "SELECT * FROM Item WHERE UserID = '{$_SESSION['userid']}'";
+                        $sql = "SELECT * FROM Item";
                         $result = mysqli_query($conn, $sql);
                         if ($result) {
                             while ($row = mysqli_fetch_assoc($result)) {
+                                $UserID = $row['UserID'];
                                 $ItemID = $row['ItemID'];
                                 $ItemType = $row['ItemType'];
                                 $ItemWeight = $row['ItemWeight'];
                                 echo '
                                 <tr>
+                                <td>' . $UserID . '</td>
                                 <td>' . $ItemType . '</td>
                                 <td>' . $ItemWeight . ' lb</td>
                                 <center>
-                                <td><a class="update-feature" href="../includes/itemUpdate.inc.php? updateid=' . $ItemID . ' & weight=' . $ItemWeight . ' & type=' . $ItemType . '">Update</a></td>
+                                <td><a class="update-feature" href="../includes/itemUpdateAdmin.inc.php? updateid=' . $ItemID . ' & weight=' . $ItemWeight . ' & type=' . $ItemType . '">Update</a></td>
                                 </center>
                                 <center>
-                                <td><a class="delete-feature" href="../includes/itemDelete.inc.php? deleteid=' . $ItemID . '">Delete</a></td>
+                                <td><a class="delete-feature" href="../includes/itemDeleteAdmin.inc.php? deleteid=' . $ItemID . '">Delete</a></td>
                                 </center>
                                 </tr> 
                                 ';
