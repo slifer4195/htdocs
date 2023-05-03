@@ -165,13 +165,15 @@ function createItem($conn, $itemType, $weight)
     exit();
 }
 
-function updateProfile($conn, $firstName, $lastName, $email, $age)
+function updateProfile($conn, $firstName, $lastName, $password, $email, $age)
 {
     $id = $_SESSION["userid"];
 
     if ($email == "") {
         $email = $_SESSION["useremail"];
     }
+
+    $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
 
     $sql = "UPDATE Users SET FirstName= '$firstName', LastName='$lastName', Email='$email', Age='$age' WHERE UserID= '$id'";
 
