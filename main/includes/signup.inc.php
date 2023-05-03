@@ -17,7 +17,7 @@ if (isset($_POST["submit"])) {
         exit();
     }
     if (invalidAge($age) !== false) {
-        header("location: ../pages/SignUp.php?error=invalideage");
+        header("location: ../pages/SignUp.php?error=invalidage");
         exit();
     }
     if (invalidUid($email) !== false) {
@@ -34,6 +34,13 @@ if (isset($_POST["submit"])) {
     }
 
     createUser($conn, $firstName, $lastName, $email, $age, $password);
+
+    echo '<script type="text/javascript">';
+    echo ' alert("You have successfully signed up!")';
+    echo '</script>';
+
+    header("location: ../pages/SignIn.php");
+    exit();
 } else {
     header("location: ../pages/SignUp.php");
     exit();
