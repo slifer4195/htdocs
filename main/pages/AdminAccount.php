@@ -231,7 +231,24 @@
                                 ';
                             }
                         }
+
+                        $sql2 = "SELECT * FROM Location";
+                        $result2 = mysqli_query($conn, $sql);
+
+                        if (mysqli_num_rows($result2) >= 0) {
+                            // Initialize an empty array to store the data
+                            $data2 = array();
+                          
+                            // Loop through the result and store each row in the data array
+                            while ($row2 = mysqli_fetch_assoc($result2)) {
+                              $data2[] = $row2;
+                            }
+                          } else {
+                            echo "No data found.";
+                          }
                         ?>
+
+                        
                     </tbody>
                 </table>
             </center>
