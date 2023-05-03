@@ -142,14 +142,14 @@
                 <a class="welcomeFont-admin-link" href="/main/pages/AdminAccount.php">Account Management</a>
             </div>
             <div class="welcomeFont-admin">
-                <a class="welcomeFont-admin-link" href="/main/pages/AdminItem.php">Item Management</a>
+                <a class="welcomeFont-admin-link" href="/main/pages/Profile.php">TODO</a>
             </div>
             <div class="welcomeFont-admin">
                 <a class="welcomeFont-admin-link" href="/main/pages/locAdmin.php">View Locations & ID</a>
             </div>
 
             <div class="welcomeFont-admin">
-                <a class="welcomeFont-admin-link" href="/main/pages/locAdmin.php">Activity</a>
+                <a class="welcomeFont-admin-link" href="/main/pages/actAdmin.php">Edit Activity</a>
             </div>
             <!-- <div class='nameFont-admin'>Welcome to AnyWhere</div> -->
         </div>

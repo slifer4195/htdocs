@@ -103,21 +103,7 @@ if (mysqli_num_rows($result) >= 0) {
         <div class="row">
             <div class="large-12 columns">
                 <h2>Activity</h2>
-                <form method="post" action="../includes/add_act.php">
-                <label for="location-dropdown">Select a location ID:</label>
-                <select id="location-dropdown" name="location_id">
-                <?php foreach ($data as $row) { ?>
-                    <option value="<?php echo $row['id']; ?>"><?php echo $row['id']; ?></option>
-                <?php } ?>
-                </select>
-
-                    <input type="text" id="act-name" name="act_name" placeholder="activity type">
-                    <input type="text" id="act-price" name="act_price" placeholder="activity price (int)">
-
-                <input type="submit" value="Submit">
-
-                
-                </form>
+            
                 <?php foreach ($data2 as $row2) { ?>
                     <td>Location ID:</td>
                     <td><?php echo $row2['LocationID']; ?></td>
@@ -132,6 +118,13 @@ if (mysqli_num_rows($result) >= 0) {
                             <button type="submit">Delete</button>
                     </form>
 
+                    <form method="post" action="../includes/edit_act.php">
+                            <input type="hidden" name="act_name" value="<?php echo $row2['ActivityType']; ?>">
+                            <input type="hidden" name='act_price' value="<?php echo $row2['ActivityPrice']; ?>">
+                            <input type="hidden" name="location_id" value="<?php echo $row2['LocationID']; ?>">
+                            <input type="hidden" name="id" value="<?php echo $row2['ActivityID']; ?>">
+                            <button type="submit">Edit</button>
+                    </form>
                 <?php } ?>
 
             </div>

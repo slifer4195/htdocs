@@ -42,7 +42,7 @@
       
         if (mysqli_query($conn, $sql)) {
           echo "Record updated successfully";
-          header("Location: ../pages/Activity.php");
+          header("Location: ../pages/actAdmin.php");
           exit();
        
    
