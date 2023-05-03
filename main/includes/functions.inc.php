@@ -168,6 +168,11 @@ function createItem($conn, $itemType, $weight)
 function updateProfile($conn, $firstName, $lastName, $email, $age)
 {
     $id = $_SESSION["userid"];
+
+    if ($email == "") {
+        $email = $_SESSION["useremail"];
+    }
+
     $sql = "UPDATE Users SET FirstName= '$firstName', LastName='$lastName', Email='$email', Age='$age' WHERE UserID= '$id'";
 
     $result = mysqli_query($conn, $sql);
