@@ -1,7 +1,3 @@
-<?php
-session_start();
-?>
-
 <!doctype html>
 <html lang="en">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,21 +11,22 @@ session_start();
 
     <style>
     .bg {
-        background-image: url('/img/background-anywhere.jpeg');
+        background-image: url('/img/ivory.jpeg');
         background-repeat: no-repeat;
         background-size: cover;
         width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         height: 100vh;
     }
 
-    .text-hero {
-        position: absolute;
-        top: 48%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+    .text-hero-admin {
+        text-align: center;
+        align-items: center;
     }
 
-    .text-hero h1 {
+    .text-hero-admin h1 {
         text-align: center;
         font-family: 'Mulish', sans-serif;
         font-weight: bold;
@@ -39,7 +36,7 @@ session_start();
         margin-bottom: 10px;
     }
 
-    .text-hero>p {
+    .text-hero-admin>p {
         font-size: 21px;
         text-align: center;
         margin-top: -2px;
@@ -48,16 +45,28 @@ session_start();
         color: white;
     }
 
-    .welcomeFont {
+    .welcomeFont-admin {
         text-align: center;
-        font-family: 'Mulish', sans-serif;
-        font-weight: bold;
-        font-size: 45px;
-        color: white;
-        margin-bottom: 25px;
+        margin-bottom: 100px;
     }
 
-    .nameFont {
+    .welcomeFont-admin-link {
+        font-family: 'Mulish', sans-serif;
+        font-weight: bold;
+        font-size: 20px;
+        background-color: #5CA36C;
+        border: white 1px solid;
+        border-radius: 10px;
+        padding: 20px;
+        color: white;
+    }
+
+    .welcomeFont-admin-link:hover {
+        transition: all 0.2s ease-out;
+        color: #E5C899;
+    }
+
+    .nameFont-admin {
         font-size: 27px;
         text-align: center;
         margin-top: -2px;
@@ -128,19 +137,14 @@ session_start();
     </header>
 
     <div class="bg">
-        <div class='text-hero'>
-            <?php
-            // check if the user actullay logged in 
-            if (isset($_SESSION["useremail"])) {
-                echo "<div class='welcomeFont'>" . $_SESSION["userfirstname"] . ":)</div>";
-                echo "<div class='nameFont'>Welcome to AnyWhere</div>";
-            } else {
-                echo "<h1>AnyWhere</h1>";
-                echo "<p>Makes Travel Easier</p>";
-            }
-            ?>
-            <!-- <h1>AnyWhere</h1>
-            <p>Makes Travel Easier</p> -->
+        <div class='text-hero-admin'>
+            <div class="welcomeFont-admin">
+                <a class="welcomeFont-admin-link" href="/main/pages/AdminAccount.php">Account Management</a>
+            </div>
+            <div class="welcomeFont-admin">
+                <a class="welcomeFont-admin-link" href="/main/pages/Profile.php">TODO</a>
+            </div>
+            <!-- <div class='nameFont-admin'>Welcome to AnyWhere</div> -->
         </div>
     </div>
 
