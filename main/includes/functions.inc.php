@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 function emptyInputSignup($firstName, $lastName, $email, $password, $passwordRepeat, $age)
 {
@@ -119,6 +120,7 @@ function loginUser($conn, $email, $password)
         $_SESSION["userfirstname"] = $emailExists["FirstName"];
         $_SESSION["userlastname"] = $emailExists["LastName"];
         $_SESSION["userage"] = $emailExists["Age"];
+        $_SESSION["usertype"] = $emailExists["UserType"];
         header("location: ../pages/Home.php");
         exit();
     }
@@ -163,38 +165,21 @@ function createItem($conn, $itemType, $weight)
     exit();
 }
 
-function updateProfile($conn, $firstName)
+function updateProfile($conn, $firstName, $lastName, $email, $age)
 {
-    $userEmail = $_SESSION["useremail"];
-    $sql = "UPDATE Users SET FirstName='$firstName' WHERE UserID='{$_SESSION['userid']}'";
-    mysqli_query($conn, $sql);
-    mysqli_close($conn);
+    $id = $_SESSION["userid"];
+    $sql = "UPDATE Users SET FirstName= '$firstName', LastName='$lastName', Email='$email', Age='$age' WHERE UserID= '$id'";
 
+    $result = mysqli_query($conn, $sql);
 
-
-    // $sql = "UPDATE Users SET FirstName = ?, LastName = ?, Email = ?, Age = ?, UserPassword = ? WHERE UserID = $userid;";
-    // $stmt = mysqli_stmt_init($conn);
-    // if (!mysqli_stmt_prepare($stmt, $sql)) {
-    //     header("location: ../pages/Profile.php?error=stmtfailed");
-    //     exit();
-    // }
-
-    // $email_exist = $_SESSION['useremail'];
-
-    // $emailExists = emailExists($conn, $email_exist);
-    // $pwdHashed = $emailExists["UserPassword"];
-    // $checkpwd = password_verify($password, $pwdHashed);
-    // $hashedPwd = "";
-
-    // if ($checkpwd === false) {
-    //     $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
-    // } else if ($checkpwd === true) {
-    //     $hashedPwd = $_SESSION["userpassword"];
-    // }
-
-    // mysqli_stmt_bind_param($stmt, "sssss", $firstName, $lastName, $email, $age, $hashedPwd);
-    // mysqli_stmt_execute($stmt);
-    // mysqli_stmt_close($stmt);
-    header("location: ../pages/Profile.php?error=none");
-    exit();
+    if ($result) {
+        $_SESSION["userfirstname"] = $firstName;
+        $_SESSION["userlastname"] = $lastName;
+        $_SESSION["useremail"] = $email;
+        $_SESSION["userage"] = $age;
+        header("location: ../pages/Profile.php?error=none");
+        exit();
+    } else {
+        die(mysqli_error($conn));
+    }
 }
