@@ -101,9 +101,15 @@ mysqli_close($conn);
                         <td><?php echo $row['locationWeather']; ?></td>
                 </li>
                     <td>
-                        <form method="post" action="../includes/delete_location.php">
+                         <form method="post" action="../includes/delete_location.php">
                             <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                             <button type="submit">Delete</button>
+                        </form>
+                        <form method="post" action="../includes/edit_location.php">
+                            <input type="hidden" name="locationName" value="<?php echo $row['locationName']; ?>">
+                            <input type="hidden" name='locationWeather' value="<?php echo $row['locationWeather']; ?>">
+                            <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                            <button type="submit">Edit</button>
                         </form>
                     </td>
                 <?php } ?>

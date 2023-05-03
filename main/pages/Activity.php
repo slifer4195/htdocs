@@ -1,3 +1,63 @@
+<?php
+// Connect to the database
+$serverName = "localhost";
+$dBUsername = "root";
+$dBPassword = "";
+$dBName = "AnyWhere";
+
+$conn = mysqli_connect($serverName, $dBUsername, $dBPassword, $dBName);
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+
+// Build the SQL query to select all data from the Location table
+$sql = "SELECT * FROM Location";
+// $sql2 = "SELECT * FROM Activity";
+
+// Execute the query and store the result in a variable
+$result = mysqli_query($conn, $sql);
+// $result2 = mysqli_query($conn, $sql2);
+
+// Check if there are any rows in the result
+if (mysqli_num_rows($result) > 0) {
+  // Initialize an empty array to store the data
+  $data = array();
+
+  // Loop through the result and store each row in the data array
+  while ($row = mysqli_fetch_assoc($result)) {
+    $data[] = $row;
+  }
+} else {
+  echo "No data found.";
+}
+
+
+
+//  $sql2 = "SELECT * FROM Act";
+ $sql2 = "SELECT * FROM Activity";
+ 
+ // Execute the query and store the result in a variable
+ $result2 = mysqli_query($conn, $sql2);
+ // $result2 = mysqli_query($conn, $sql2);
+ 
+ // Check if there are any rows in the result
+ if (mysqli_num_rows($result2) > 0) {
+   // Initialize an empty array to store the data
+   $data2 = array();
+ 
+   // Loop through the result and store each row in the data array
+   while ($row2 = mysqli_fetch_assoc($result2)) {
+     $data2[] = $row2;
+   }
+ } else {
+   echo "No data found.";
+ }
+
+?>
+
+
 <!doctype html>
 <html lang="en">
 
@@ -42,6 +102,36 @@
         <div class="row">
             <div class="large-12 columns">
                 <h2>Activity</h2>
+                <form method="post" action="../includes/add_act.php">
+                <label for="location-dropdown">Select a location ID:</label>
+                <select id="location-dropdown" name="location_id">
+                <?php foreach ($data as $row) { ?>
+                    <option value="<?php echo $row['id']; ?>"><?php echo $row['id']; ?></option>
+                <?php } ?>
+                </select>
+
+                    <input type="text" id="act-name" name="act_name" placeholder="activity type">
+                    <input type="text" id="act-price" name="act_price" placeholder="activity price (int)">
+
+                <input type="submit" value="Submit">
+
+                
+                </form>
+                <?php foreach ($data2 as $row2) { ?>
+                    <td>Location ID:</td>
+                    <td><?php echo $row2['LocationID']; ?></td>
+                    <td>Activity Type:</td>
+                    <td><?php echo $row2['ActivityType']; ?></td>
+                    <td>Activity Price:</td>
+                    <td><?php echo $row2['ActivityPrice']; ?></td>
+                    <br/>
+
+                    <form method="post" action="../includes/delete_act.php">
+                            <input type="hidden" name="id" value="<?php echo $row2['ActivityID']; ?>">
+                            <button type="submit">Delete</button>
+                    </form>
+                <?php } ?>
+
             </div>
         </div>
     </div>
@@ -53,3 +143,4 @@
 </body>
 
 </html>
+
