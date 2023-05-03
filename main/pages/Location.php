@@ -18,7 +18,7 @@ $sql = "SELECT * FROM Location";
 $result = mysqli_query($conn, $sql);
 
 // Check if there are any rows in the result
-if (mysqli_num_rows($result) > 0) {
+if (mysqli_num_rows($result) >= 0) {
   // Initialize an empty array to store the data
   $data = array();
 
