@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -190,6 +194,7 @@
                     <input type="text" autocomplete="off" name="itemType" style="width: 220px">
                     <p class="instruction">Weight</p>
                     <input type="text" autocomplete="off" name="weight" style="width: 220px">
+                    <input type="hidden" name = "id" value="<?php echo $_SESSION['userid']; ?>">
                     <?php
                     if (isset($_GET["error"])) {
                         if ($_GET["error"] == "invalidweight") {
@@ -217,7 +222,6 @@
                 <table class="item-table">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
                             <th scope="col">Item Type</th>
                             <th scope="col">Item Weight</th>
                             <th scope="col">Update</th>
@@ -237,7 +241,7 @@
                             die("Connection failed: " . mysqli_connect_error());
                         }
 
-                        $sql = "SELECT * FROM Item";
+                        $sql = "SELECT * FROM Item WHERE UserID = '{$_SESSION['userid']}'";
                         $result = mysqli_query($conn, $sql);
                         if ($result) {
                             while ($row = mysqli_fetch_assoc($result)) {
@@ -246,7 +250,6 @@
                                 $ItemWeight = $row['ItemWeight'];
                                 echo '
                                 <tr>
-                                <th scope="row">' . $ItemID . '</th>
                                 <td>' . $ItemType . '</td>
                                 <td>' . $ItemWeight . ' lb</td>
                                 <center>

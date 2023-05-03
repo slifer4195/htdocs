@@ -1,6 +1,7 @@
 <?php
 
 if (isset($_POST["submit"])) {
+    $userID = $_POST["id"];
     $itemType = $_POST["itemType"];
     $weight = $_POST["weight"];
 
@@ -29,7 +30,7 @@ if (isset($_POST["submit"])) {
     //     exit();
     // }
 
-    createItem($conn, $itemType, $weight);
+    createItem($conn, $userID, $itemType, $weight);
 } else {
     header("location: ../pages/item.php");
     exit();
