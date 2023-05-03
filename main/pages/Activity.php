@@ -130,6 +130,14 @@ if (mysqli_num_rows($result) > 0) {
                             <input type="hidden" name="id" value="<?php echo $row2['ActivityID']; ?>">
                             <button type="submit">Delete</button>
                     </form>
+
+                    <form method="post" action="../includes/edit_act.php">
+                            <input type="hidden" name="act_name" value="<?php echo $row2['ActivityType']; ?>">
+                            <input type="hidden" name='act_price' value="<?php echo $row2['ActivityPrice']; ?>">
+                            <input type="hidden" name="location_id" value="<?php echo $row2['LocationID']; ?>">
+                            <input type="hidden" name="id" value="<?php echo $row2['ActivityID']; ?>">
+                            <button type="submit">Edit</button>
+                    </form>
                 <?php } ?>
 
             </div>

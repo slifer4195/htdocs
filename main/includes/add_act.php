@@ -11,8 +11,7 @@ if (!$conn) {
 }
 
 // Build the SQL query to select all data from the Location table
-$sql = "SELECT * FROM Location";
-// $sql2 = "SELECT * FROM Activity";
+$sql = "SELECT * FROM Activity";
 
 // Execute the query and store the result in a variable
 $result = mysqli_query($conn, $sql);
@@ -50,6 +49,7 @@ if (isset($_POST['act_name'])) {
   
     if (mysqli_query($conn, $sql)) {
       echo "New record created successfully";
+      header("Location: ../pages/Activity.php");
     } else {
       echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
