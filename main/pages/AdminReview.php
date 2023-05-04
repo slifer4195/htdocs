@@ -31,6 +31,28 @@ if (mysqli_num_rows($result) >= 0) {
 } else {
   echo "No data found.";
 }
+
+$sql = "SELECT * FROM Users";
+
+// Execute the query and store the result in a variable
+$result = mysqli_query($conn, $sql);
+// $result2 = mysqli_query($conn, $sql2);
+
+// Check if there are any rows in the result
+if (mysqli_num_rows($result) >= 0) {
+  // Initialize an empty array to store the data
+  $data2 = array();
+
+  // Loop through the result and store each row in the data array
+  while ($row = mysqli_fetch_assoc($result)) {
+    $data2[] = $row;
+  }
+} else {
+  echo "No data found.";
+}
+
+
+
 ?>
 
 <!doctype html>
@@ -213,8 +235,16 @@ if (mysqli_num_rows($result) >= 0) {
     <div class="bg-item">
         <div class='item-form'>
             <h1>Review</h1>
-            <form action="../includes/review.inc.php" method="post">
+            <form action="../includes/reviewAdmin.inc.php" method="post">
                 <center>
+
+                    <p class="instruction">User ID</p>
+                    <label for="user-dropdown">Select a User ID:</label>
+                    <select id="user-dropdown" name="userid">
+                        <?php foreach ($data2 as $row) { ?>
+                            <option value="<?php echo $row['UserID']; ?>"><?php echo $row['UserID']; ?></option>
+                        <?php } ?>
+                    </select>
 
                     <p class="instruction">Activity</p>
                     <label for="activity-dropdown">Select a Activity:</label>
@@ -232,8 +262,6 @@ if (mysqli_num_rows($result) >= 0) {
                         <option value=4>4</option>
                         <option value=5>5</option>
                     </select>
-                    
-                    <input type="hidden" name = "userid" value="<?php echo $_SESSION['userid']; ?>">
 
                     <button type="submit" name="submit" class="item-button">
                         <p>Create Review</p>
@@ -250,7 +278,7 @@ if (mysqli_num_rows($result) >= 0) {
         </div>
 
         <div class='item-display'>
-            <h1>Your Review List</h1>
+            <h1>All Reviews List</h1>
             <center>
                 <table class="item-table">
                     <thead>
@@ -275,7 +303,7 @@ if (mysqli_num_rows($result) >= 0) {
                             die("Connection failed: " . mysqli_connect_error());
                         }
 
-                        $sql = "SELECT * FROM Reviews WHERE UserID = '{$_SESSION['userid']}'";
+                        $sql = "SELECT * FROM Reviews";
                         $result = mysqli_query($conn, $sql);
                         if ($result) {
                             while ($row = mysqli_fetch_assoc($result)) {
@@ -289,57 +317,11 @@ if (mysqli_num_rows($result) >= 0) {
                                 <td>' . $ReviewDate . '</td>
                                 <td>' . $Rating . ' </td>
                                 <center>
-                                <td><a class="update-feature" href="../includes/reviewUpdate.inc.php? updateid=' . $ReviewID . ' & activityid=' . $ActivityID . ' & rating=' . $Rating . '">Update</a></td>
+                                <td><a class="update-feature" href="../includes/reviewUpdateAdmin.inc.php? updateid=' . $ReviewID . ' & weight=' . $ActivityID . ' & type=' . $Rating . '">Update</a></td>
                                 </center>
                                 <center>
-                                <td><a class="delete-feature" href="../includes/reviewDelete.inc.php? deleteid=' . $ReviewID . '">Delete</a></td>
+                                <td><a class="delete-feature" href="../includes/reviewDeleteAdmin.inc.php? deleteid=' . $ReviewID . '">Delete</a></td>
                                 </center>
-                                </tr> 
-                                ';
-                            }
-                        }
-                        ?>
-                    </tbody>
-                </table>
-            </center>
-        </div>
-
-        <div class='item-display'>
-            <h1>All Reviews List</h1>
-            <center>
-                <table class="item-table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Activity ID</th>
-                            <th scope="col">Review Date</th>
-                            <th scope="col">Rating</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $serverName = "localhost";
-                        $dBUsername = "root";
-                        $dBPassword = "";
-                        $dBName = "AnyWhere";
-
-                        $conn = mysqli_connect($serverName, $dBUsername, $dBPassword, $dBName);
-
-                        if (!$conn) {
-                            die("Connection failed: " . mysqli_connect_error());
-                        }
-
-                        $sql = "SELECT * FROM Reviews";
-                        $result = mysqli_query($conn, $sql);
-                        if ($result) {
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                $ActivityID = $row['ActivityID'];
-                                $ReviewDate = $row['ReviewDate'];
-                                $Rating = $row['Rating'];
-                                echo '
-                                <tr>
-                                <td>' . $ActivityID . '</td>
-                                <td>' . $ReviewDate . '</td>
-                                <td>' . $Rating . ' </td>
                                 </tr> 
                                 ';
                             }
