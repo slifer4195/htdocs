@@ -38,13 +38,55 @@
         ?>
     </header>
 
-    <div class="bg">
-        <div class="row">
-            <div class="large-12 columns">
-                <h2>Flight</h2>
-            </div>
+    <div class='item-display'>
+            <h1>List of Flights</h1>
+            <center>
+                <table class="flight-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Flight Name</th>
+                            <th scope="col">Flight Price</th>
+                            <th scope="col">Join Flight</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $serverName = "localhost";
+                        $dBUsername = "root";
+                        $dBPassword = "";
+                        $dBName = "AnyWhere";
+
+                        $conn = mysqli_connect($serverName, $dBUsername, $dBPassword, $dBName);
+
+                        if (!$conn) {
+                            die("Connection failed: " . mysqli_connect_error());
+                        }
+
+                        $sql = "SELECT * FROM Flights";
+                        $result = mysqli_query($conn, $sql);
+                        if ($result) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $FlightID = $row['FlightID'];
+                                $FlightName = $row['FlightName'];
+                                $FlightPrice = $row['FlightPrice'];
+                                echo '
+                                <tr>
+                                <th scope="row">' . $FlightID . '</th>
+                                <td>' . $FlightName . '</td>
+                                <td> $' . $FlightPrice . '</td>
+                                <center>
+                                <td><a class="join-feature" href="../includes/flightJoin.inc.php? joinid=' . $FlightID . ' & name=' . $FlightName . ' & price=' . $FlightPrice . '">Join</a></td>
+                                </center>
+                                </tr> 
+                                ';
+                            }
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </center>
         </div>
-    </div>
     </div>
 
     <!-- JS Libraries -->
