@@ -38,6 +38,20 @@
         ?>
     </header>
 
+    <div class="bg-flight">
+        <div class='flight-form'>
+            <h1>Flights</h1>
+            <form method="post" action="../includes/flightAdminCreate.inc.php">
+            <label for="flight-name">Flight Name:</label>
+            <input type="text" id="flight-name" name="flight_name">
+
+            <label for="flight-price">Flight Price:</label>
+            <input type="text" id="flight-price" name="flight_price">
+
+            <input type="submit" value="Submit">
+            </form>
+        </div>
+
     <div class='item-display'>
             <h1>List of Flights</h1>
             <center>
@@ -48,6 +62,7 @@
                             <th scope="col">Flight Name</th>
                             <th scope="col">Flight Price</th>
                             <th scope="col">Join Flight</th>
+                            <th scope="col">Delete Flight</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -78,6 +93,9 @@
                                 <center>
                                 <td><a class="join-feature" href="../includes/flightJoin.inc.php? joinid=' . $FlightID . ' & name=' . $FlightName . ' & price=' . $FlightPrice . '">Join</a></td>
                                 </center>
+                                <center>
+                                <td><a class="delete-feature" href="../includes/flightAdminDelete.inc.php? deleteid=' . $FlightID . '">Delete</a></td>
+                                </center>
                                 </tr> 
                                 ';
                             }
@@ -87,6 +105,7 @@
                 </table>
             </center>
         </div>
+    </div>
     </div>
 
     <!-- JS Libraries -->

@@ -226,6 +226,7 @@ session_start();
                     <a class="topnav-link" href="/main/pages/Activity.php">Activity</a>
                     <a class="topnav-link" href="/main/pages/Location.php">Location</a>
                     <a class="topnav-link" href="/main/pages/Flight.php">Flight</a>
+                    <a class="topnav-link" href="/main/pages/Review.php">Review</a>
                     <?php
                     if (isset($_SESSION["usertype"])) {
                         echo '<a class="topnav-link" href="/main/pages/Admin.php">Admin</a>';
