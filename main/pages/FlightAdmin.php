@@ -48,6 +48,9 @@
             <label for="flight-price">Flight Price:</label>
             <input type="text" id="flight-price" name="flight_price">
 
+            <label for="location-id">Location ID:</label>
+            <input type="text" id="location-id" name="location_id">
+
             <input type="submit" value="Submit">
             </form>
         </div>
@@ -92,13 +95,13 @@
                                 <td>' . $FlightName . '</td>
                                 <td> $' . $FlightPrice . '</td>
                                 <center>
-                                <td><a class="join-feature" href="../includes/flightJoin.inc.php? joinid=' . $FlightID . ' & name=' . $FlightName . ' & price=' . $FlightPrice . '">Join</a></td>
+                                <td><a class="join-feature" href="../includes/flightAdminJoin.inc.php? joinid=' . $FlightID . ' & name=' . $FlightName . ' & price=' . $FlightPrice . '">Join</a></td>
                                 </center>
                                 <center>
                                 <td><a class="update-feature" href="../includes/flightAdminUpdate.inc.php? updateid=' . $FlightID . ' & flightName=' . $FlightName . ' & flightPrice=' . $FlightPrice . '">Update</a></td>
                                 </center>
                                 <center>
-                                <td><a class="delete-feature" href="../includes/flightAdminDelete.inc.php? deleteid=' . $FlightID . '">Delete</a></td>
+                                <td><a class="delete-feature" href="../includes/flightAdminDeleteFlights.inc.php? deleteid=' . $FlightID . '">Delete</a></td>
                                 </center>
                                 </tr> 
                                 ';
