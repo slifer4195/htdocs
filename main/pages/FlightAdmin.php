@@ -62,6 +62,7 @@
                             <th scope="col">Flight Name</th>
                             <th scope="col">Flight Price</th>
                             <th scope="col">Join Flight</th>
+                            <th scope="col">Update Flight</th>
                             <th scope="col">Delete Flight</th>
                         </tr>
                     </thead>
@@ -92,6 +93,9 @@
                                 <td> $' . $FlightPrice . '</td>
                                 <center>
                                 <td><a class="join-feature" href="../includes/flightJoin.inc.php? joinid=' . $FlightID . ' & name=' . $FlightName . ' & price=' . $FlightPrice . '">Join</a></td>
+                                </center>
+                                <center>
+                                <td><a class="update-feature" href="../includes/flightAdminUpdate.inc.php? updateid=' . $FlightID . ' & flightName=' . $FlightName . ' & flightPrice=' . $FlightPrice . '">Update</a></td>
                                 </center>
                                 <center>
                                 <td><a class="delete-feature" href="../includes/flightAdminDelete.inc.php? deleteid=' . $FlightID . '">Delete</a></td>
