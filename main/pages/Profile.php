@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -6,124 +10,147 @@
 <head>
     <link href="/dashboard/stylesheets/normalize.css" rel="stylesheet" type="text/css" />
     <link href="/dashboard/stylesheets/all.css" rel="stylesheet" type="text/css" />
-    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.1.0/css/font-awesome.min.css" rel="stylesheet"
-        type="text/css" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <script src="/dashboard/javascripts/modernizr.js" type="text/javascript"></script>
     <link href="/dashboard/images/favicon.png" rel="icon" type="image/png" />
 
     <style>
-    .bg {
-        background-image: url('/img/ivory.jpeg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-    }
-
-    .profile-form {
-        border: 2px solid white;
-        width: 30%;
-        height: 740px;
-        background-color: #5CA36C;
-    }
-
-    .profile-form h1 {
-        text-align: center;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        font-weight: bold;
-        font-size: 32px;
-        letter-spacing: 1px;
-        color: white;
-        margin-top: 20px;
-        margin-bottom: 45px;
-    }
-
-    .profile-form>p {
-        text-align: center;
-        font-size: 21px;
-        margin-top: -2px;
-        margin-left: 25px;
-        font-weight: bold;
-        font-style: italic;
-        color: white;
-    }
-
-    .instruction {
-        text-align: center;
-        font-size: 15px;
-        margin-bottom: 5px;
-        letter-spacing: 0.7px;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        margin-left: 10px;
-        font-weight: bold;
-        color: #EBECF0;
-    }
-
-    input[type="email"] {
-        text-align: center;
-    }
-
-    input[type="text"] {
-        text-align: center;
-    }
-
-    input[type="password"] {
-        text-align: center;
-    }
-
-    .profile-button {
-        margin-top: 20px;
-        background-color: white;
-        color: #5CA36C;
-        border-radius: 10px;
-        border: 2px solid;
-        border-color: #5CA36C;
-        font-family: 'Mulish', sans-serif;
-        font-weight: bold;
-        width: 172px;
-    }
-
-    .profile-button>p {
-        font-family: 'Mulish', sans-serif;
-        font-size: 15px;
-        font-weight: bold;
-        margin-bottom: 0px;
-    }
-
-    .reset-button {
-        margin-top: 20px;
-        align-items: center;
-        text-align: center;
-        background-color: white;
-        color: #5CA36C;
-        border-radius: 10px;
-        border: 2px solid;
-        border-color: #5CA36C;
-        font-family: 'Mulish', sans-serif;
-        font-weight: bold;
-        height: 58px;
-        width: 115px;
-    }
-
-    .reset-button>p {
-        font-family: 'Mulish', sans-serif;
-        font-size: 15px;
-        font-weight: bold;
-        margin-bottom: 0px;
-    }
-
-    .input-type {
-        width: 220px;
-    }
-
-    @media only screen and (max-width: 600px) {
-        .profile-form {
-            width: 90%;
+        .bg {
+            background-image: url('/img/ivory.jpeg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
-    }
+
+        .profile-form {
+            border: 2px solid white;
+            width: 30%;
+            height: 820px;
+            background-color: #5CA36C;
+        }
+
+        .profile-form h1 {
+            text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: bold;
+            font-size: 32px;
+            letter-spacing: 1px;
+            color: white;
+            margin-top: 20px;
+            margin-bottom: 45px;
+        }
+
+        .profile-form>p {
+            text-align: center;
+            font-size: 21px;
+            margin-top: -2px;
+            margin-left: 25px;
+            font-weight: bold;
+            font-style: italic;
+            color: white;
+        }
+
+        .instruction {
+            text-align: center;
+            font-size: 15px;
+            margin-bottom: 5px;
+            letter-spacing: 0.7px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-left: 10px;
+            font-weight: bold;
+            color: #EBECF0;
+        }
+
+        input[type="email"] {
+            text-align: center;
+        }
+
+        input[type="text"] {
+            text-align: center;
+        }
+
+        input[type="password"] {
+            text-align: center;
+        }
+
+        .profile-button {
+            margin-top: 20px;
+            background-color: white;
+            color: #5CA36C;
+            border-radius: 10px;
+            border: 2px solid;
+            border-color: #5CA36C;
+            font-family: 'Mulish', sans-serif;
+            font-weight: bold;
+            width: 172px;
+        }
+
+        .profile-button>p {
+            font-family: 'Mulish', sans-serif;
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 0px;
+        }
+
+        .delete-button {
+            margin-top: 20px;
+            color: red;
+            background-color: white;
+            border-radius: 10px;
+            border: 2px solid;
+            border-color: #5CA36C;
+            font-family: 'Mulish', sans-serif;
+            font-weight: bold;
+            width: 185px;
+        }
+
+        .delete-button:hover {
+            background-color: red;
+            color: white;
+        }
+
+        .delete-button>p {
+            font-family: 'Mulish', sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 0px;
+        }
+
+        .reset-button {
+            margin-top: 20px;
+            align-items: center;
+            text-align: center;
+            background-color: white;
+            color: #5CA36C;
+            border-radius: 10px;
+            border: 2px solid;
+            border-color: #5CA36C;
+            font-family: 'Mulish', sans-serif;
+            font-weight: bold;
+            height: 58px;
+            width: 115px;
+        }
+
+        .reset-button>p {
+            font-family: 'Mulish', sans-serif;
+            font-size: 10px;
+            font-weight: bold;
+            margin-bottom: 0px;
+        }
+
+        .input-type {
+            width: 220px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .profile-form {
+                width: 90%;
+            }
+        }
     </style>
 </head>
 
@@ -167,6 +194,10 @@
                         echo ("<button type='submit' name='submit' class='profile-button'>
                         <p>Change Saved</p>
                     </button>");
+                        echo "<br>";
+                        echo ("<a class='delete-button' href='../includes/userDeleteAll.inc.php'>
+                        <p>Delete Your Account</p>
+                    </a>");
                     }
                     ?>
                     <?php
