@@ -1,4 +1,4 @@
-// <!-- 
+<!-- 
 // Name: Sung Rung Yoo
 
 // Description: 
@@ -16,15 +16,15 @@ $dBName = "AnyWhere";
 $conn = mysqli_connect($serverName, $dBUsername, $dBPassword, $dBName);
 
 if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+  die("Connection failed: " . mysqli_connect_error());
 }
 
 // Check if the locationId was passed in the form submission
 if (isset($_POST['id'])) {
   // Retrieve the locationId from the $_POST array
-//   $actId = $_POST['id'];
+  //   $actId = $_POST['id'];
 
-//   $sql = "DELETE FROM Activity WHERE id=$actId";
+  //   $sql = "DELETE FROM Activity WHERE id=$actId";
 
   $actId = (int)$_POST['id'];
   echo "The act ID is: " . $actId;
@@ -44,11 +44,11 @@ if (isset($_POST['id'])) {
   // ...
 
   // Redirect the user to a confirmation page or the previous page
-//   header("Location: Activity.php");
+  //   header("Location: Activity.php");
 
 } else {
   // Handle the case where the locationId was not passed in the form submission
   // ...
   echo "wha";
 }
-?> 
+?>
