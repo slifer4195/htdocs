@@ -222,3 +222,16 @@ function updateProfile($conn, $firstName, $lastName, $password, $email, $age)
         die(mysqli_error($conn));
     }
 }
+
+function createUserAdmin($conn, $firstName, $lastName, $email, $age, $password)
+{
+    $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
+
+    $sql = "INSERT INTO Users (FirstName, LastName, Email, Age, UserPassword, UserType) VALUES ('$firstName', '$lastName', '$email', '$age', '$hashedPwd', 1)";
+
+    $result = mysqli_query($conn, $sql);
+
+    if (!$result) {
+        die(mysqli_error($conn));
+    }
+}

@@ -13,32 +13,32 @@ if (isset($_POST["submit"])) {
 
     // error handling
     if (emptyInputSignup($firstName, $lastName, $email, $password, $passwordRepeat, $age) !== false) {
-        header("location: ../pages/SignUp.php?error=emptyinput");
+        header("location: ../pages/AdminSignup.php?error=emptyinput");
         exit();
     }
     if (invalidAge($age) !== false) {
-        header("location: ../pages/SignUp.php?error=invalidage");
+        header("location: ../pages/AdminSignup.php?error=invalidage");
         exit();
     }
     if (invalidUid($email) !== false) {
-        header("location: ../pages/SignUp.php?error=invalidemail");
+        header("location: ../pages/AdminSignup.php?error=invalidemail");
         exit();
     }
     if (pwdMatch($password, $passwordRepeat) !== false) {
-        header("location: ../pages/SignUp.php?error=passwordsdontmatch");
+        header("location: ../pages/AdminSignup.php?error=passwordsdontmatch");
         exit();
     }
     if (emailExists($conn, $email) !== false) {
-        header("location: ../pages/SignUp.php?error=emailtaken");
+        header("location: ../pages/AdminSignup.php?error=emailtaken");
         exit();
     }
 
-    createUser($conn, $firstName, $lastName, $email, $age, $password);
+    createUserAdmin($conn, $firstName, $lastName, $email, $age, $password);
 
     echo "<script type=\"text/javascript\">window.alert('You have successfully signed up!');window.location.href = '../pages/SignIn.php';</script>";
 
     exit();
 } else {
-    header("location: ../pages/SignUp.php");
+    header("location: ../pages/AdminSignup.php");
     exit();
 }
