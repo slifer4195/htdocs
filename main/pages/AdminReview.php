@@ -283,6 +283,7 @@ if (mysqli_num_rows($result) >= 0) {
                 <table class="item-table">
                     <thead>
                         <tr>
+                            <th scope="col">User ID</th>
                             <th scope="col">Activity ID</th>
                             <th scope="col">Review Date</th>
                             <th scope="col">Rating</th>
@@ -308,11 +309,13 @@ if (mysqli_num_rows($result) >= 0) {
                         if ($result) {
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $ReviewID = $row['ReviewID'];
+                                $UserID = $row['UserID'];
                                 $ActivityID = $row['ActivityID'];
                                 $ReviewDate = $row['ReviewDate'];
                                 $Rating = $row['Rating'];
                                 echo '
                                 <tr>
+                                <td>' . $UserID . '</td>
                                 <td>' . $ActivityID . '</td>
                                 <td>' . $ReviewDate . '</td>
                                 <td>' . $Rating . ' </td>
