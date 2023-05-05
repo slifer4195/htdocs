@@ -1,4 +1,4 @@
-// <!-- 
+<!-- 
 // Name: Sung Rung Yoo
 
 // Description: 
@@ -15,11 +15,11 @@ $dBName = "AnyWhere";
 $conn = mysqli_connect($serverName, $dBUsername, $dBPassword, $dBName);
 
 if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+  die("Connection failed: " . mysqli_connect_error());
 }
 
 $sql2 = "SELECT * FROM Activity";
- 
+
 // Execute the query and store the result in a variable
 $result2 = mysqli_query($conn, $sql2);
 // $result2 = mysqli_query($conn, $sql2);
@@ -43,9 +43,9 @@ if (isset($_POST['id'])) {
   $locationId = $_POST['id'];
   echo "The location ID is: " . $locationId;
 
-  foreach ($data2 as $row2){
-    
-    if ($row2["LocationID"] == $locationId){
+  foreach ($data2 as $row2) {
+
+    if ($row2["LocationID"] == $locationId) {
       $sql2 = "DELETE FROM Activity WHERE LocationID=$locationId";
       if ($conn->query($sql2) === TRUE) {
         // Redirect the user to a confirmation page or the previous page
@@ -53,7 +53,6 @@ if (isset($_POST['id'])) {
       } else {
         echo "Error deleting record: " . $conn->error;
       }
-    
     }
   }
 
@@ -61,7 +60,7 @@ if (isset($_POST['id'])) {
 
   $sql = "DELETE FROM Location WHERE id=$locationId";
 
-  
+
 
   if ($conn->query($sql) === TRUE) {
     // Redirect the user to a confirmation page or the previous page
@@ -76,16 +75,11 @@ if (isset($_POST['id'])) {
   // ...
 
   // Redirect the user to a confirmation page or the previous page
-//   header("Location: confirmation_page.php");
-header("Location: ../pages/Location.php");
+  //   header("Location: confirmation_page.php");
+  header("Location: ../pages/Location.php");
   exit;
 } else {
   // Handle the case where the locationId was not passed in the form submission
   // ...
 }
 ?>
-
-
-
-
-
