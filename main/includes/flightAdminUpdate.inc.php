@@ -35,7 +35,7 @@ if (isset($_POST["submit"])) {
         $flightPrice = $price;
     }
 
-    $sql = "UPDATE Flights SET FlightName= '$flightName', FlightPrice = '$flightPrice' WHERE FlightID = '$id'";
+    $sql = "UPDATE Flights SET FlightName = '$flightName', FlightPrice = '$flightPrice' WHERE FlightID = '$id'";
 
     $result = mysqli_query($conn, $sql);
 
@@ -53,9 +53,9 @@ if (isset($_POST["submit"])) {
     <form method="post">
         <center>
             <p class="instruction">Flight Name</p>
-            <input type="text" name="flight-update" <?php echo "value='$name'" ?> style="width: 220px">
+            <input type="text" name="name-update" <?php echo "value='$name'" ?> style="width: 220px">
             <p class="instruction">Flight Price</p>
-            <input type="text" name="weight-update" <?php echo "value='$price'" ?> style="width: 220px">
+            <input type="text" name="price-update" <?php echo "value='$price'" ?> style="width: 220px">
             <?php
             if (isset($_GET["error"])) {
                 if ($_GET["error"] == "invalidweight") {
