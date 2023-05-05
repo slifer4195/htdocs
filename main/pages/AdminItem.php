@@ -215,7 +215,7 @@ if (mysqli_num_rows($result) >= 0) {
     <div class="bg-item">
         <div class='item-form'>
             <h1>Item</h1>
-            <form action="../includes/adminitem.inc.php" method="post">
+            <form action="../includes/itemAdmin.inc.php" method="post">
                 <center>
                     <?php
                     if (isset($_GET["error"])) {

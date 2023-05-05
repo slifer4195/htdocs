@@ -15,8 +15,10 @@ if (!$conn) {
 if (isset($_GET['deleteid'])) {
     $id = $_GET['deleteid'];
 
-    $sql = "DELETE FROM OnFlight WHERE UserID = '{$_SESSION['userid']}' AND FlightID = '$id'";
-    $result = mysqli_query($conn, $sql);
+    $sql = "DELETE FROM OnFlight WHERE FlightID = '$id';
+            DELETE FROM Flights WHERE FlightID = '$id';";   
+
+    $result = mysqli_multi_query($conn, $sql);
 
     if ($result) {
         header("location: ../pages/FlightAdmin.php");

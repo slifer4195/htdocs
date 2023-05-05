@@ -235,3 +235,18 @@ function createUserAdmin($conn, $firstName, $lastName, $email, $age, $password)
         die(mysqli_error($conn));
     }
 }
+
+function deleteItems($conn, $id){
+    $itemSQL = "DELETE FROM Items WHERE UserID=$id";
+    mysqli_query($conn,sql);
+}
+
+function deleteReviewsUser($conn, $id){
+    $itemSQL = "DELETE FROM Reviews WHERE UserID=$id";
+    mysqli_query($conn,sql);
+}
+
+function deleteReviewsActivity($conn, $id){
+    $itemSQL = "DELETE FROM Reviews WHERE ActivityID=$id";
+    mysqli_query($conn,sql);
+}
