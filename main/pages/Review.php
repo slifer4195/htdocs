@@ -1,3 +1,11 @@
+<!-- 
+Name: Jack Warham
+
+Description: 
+This file is the user item page.
+Users can add, delete, or update their own reviews.
+Users can view all reviews.
+-->
 <?php
 session_start();
 // Connect to the database
@@ -203,6 +211,7 @@ if (mysqli_num_rows($result) >= 0) {
 <body class="index">
     <div id="fb-root"></div>
 
+    <!-- Navigation bar -->
     <header class="header contain-to-grid">
         <?php
         include '../NavigationBar.php'
@@ -210,6 +219,7 @@ if (mysqli_num_rows($result) >= 0) {
     </header>
 
     <div class="bg-item">
+        <!-- Creating review form -->
         <div class='item-form'>
             <h1>Review</h1>
             <form action="../includes/review.inc.php" method="post">
@@ -248,6 +258,7 @@ if (mysqli_num_rows($result) >= 0) {
             </form>
         </div>
 
+        <!-- Display the user's reviews in the list -->
         <div class='item-display'>
             <h1>Your Review List</h1>
             <center>
@@ -263,6 +274,7 @@ if (mysqli_num_rows($result) >= 0) {
                     </thead>
                     <tbody>
                         <?php
+                        // Connect to the database and get data
                         $serverName = "localhost";
                         $dBUsername = "root";
                         $dBPassword = "";
@@ -274,8 +286,11 @@ if (mysqli_num_rows($result) >= 0) {
                             die("Connection failed: " . mysqli_connect_error());
                         }
 
+                        // Execute a query
                         $sql = "SELECT * FROM Reviews WHERE UserID = '{$_SESSION['userid']}'";
                         $result = mysqli_query($conn, $sql);
+                        
+                        // If it successfully executes, get data from the database
                         if ($result) {
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $ReviewID = $row['ReviewID'];
@@ -303,6 +318,7 @@ if (mysqli_num_rows($result) >= 0) {
             </center>
         </div>
 
+        <!-- Display the all reviews in the list -->
         <div class='item-display'>
             <h1>All Reviews List</h1>
             <center>
@@ -316,6 +332,7 @@ if (mysqli_num_rows($result) >= 0) {
                     </thead>
                     <tbody>
                         <?php
+                        // Connect to the database and get data
                         $serverName = "localhost";
                         $dBUsername = "root";
                         $dBPassword = "";
@@ -327,8 +344,11 @@ if (mysqli_num_rows($result) >= 0) {
                             die("Connection failed: " . mysqli_connect_error());
                         }
 
+                        // Execute a query
                         $sql = "SELECT * FROM Reviews";
                         $result = mysqli_query($conn, $sql);
+
+                        // If it successfully executes, get data from the database
                         if ($result) {
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $ActivityID = $row['ActivityID'];

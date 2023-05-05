@@ -1,3 +1,10 @@
+<!-- 
+Name: Jack Warham
+
+Description: 
+This file is the admin reviews page and shows all users reviews.
+Admins can add, delete, or update any user's items.
+-->
 <?php
 session_start();
 // Connect to the database
@@ -32,6 +39,7 @@ if (mysqli_num_rows($result) >= 0) {
   echo "No data found.";
 }
 
+// Build the SQL query to select all data from the users table
 $sql = "SELECT * FROM Users";
 
 // Execute the query and store the result in a variable
@@ -226,6 +234,7 @@ if (mysqli_num_rows($result) >= 0) {
 <body class="index">
     <div id="fb-root"></div>
 
+    <!-- Navigation bar -->
     <header class="header contain-to-grid">
         <?php
         include '../NavigationBar.php'
@@ -233,6 +242,7 @@ if (mysqli_num_rows($result) >= 0) {
     </header>
 
     <div class="bg-item">
+        <!-- Creating review form -->
         <div class='item-form'>
             <h1>Review</h1>
             <form action="../includes/reviewAdmin.inc.php" method="post">
@@ -276,7 +286,7 @@ if (mysqli_num_rows($result) >= 0) {
                 </center>
             </form>
         </div>
-
+        <!-- Display the reviews in the list -->
         <div class='item-display'>
             <h1>All Reviews List</h1>
             <center>
@@ -293,6 +303,7 @@ if (mysqli_num_rows($result) >= 0) {
                     </thead>
                     <tbody>
                         <?php
+                        // Connect to the database and get data
                         $serverName = "localhost";
                         $dBUsername = "root";
                         $dBPassword = "";
@@ -304,8 +315,11 @@ if (mysqli_num_rows($result) >= 0) {
                             die("Connection failed: " . mysqli_connect_error());
                         }
 
+                        // Execute a query
                         $sql = "SELECT * FROM Reviews";
                         $result = mysqli_query($conn, $sql);
+
+                        // If it successfully executes, get data from the database
                         if ($result) {
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $ReviewID = $row['ReviewID'];
@@ -320,7 +334,7 @@ if (mysqli_num_rows($result) >= 0) {
                                 <td>' . $ReviewDate . '</td>
                                 <td>' . $Rating . ' </td>
                                 <center>
-                                <td><a class="update-feature" href="../includes/reviewUpdateAdmin.inc.php? updateid=' . $ReviewID . ' & weight=' . $ActivityID . ' & type=' . $Rating . '">Update</a></td>
+                                <td><a class="update-feature" href="../includes/reviewUpdateAdmin.inc.php? updateid=' . $ReviewID . ' & activityid=' . $ActivityID . ' & rating=' . $Rating . '">Update</a></td>
                                 </center>
                                 <center>
                                 <td><a class="delete-feature" href="../includes/reviewDeleteAdmin.inc.php? deleteid=' . $ReviewID . '">Delete</a></td>
