@@ -1,3 +1,14 @@
+
+
+<!-- 
+Name: Sung Rung Yoo
+
+Description: 
+This file is for admin user to view the activity page that lets admin to edit activity
+-->
+
+
+
 <?php
 // Connect to the database
 $serverName = "localhost";

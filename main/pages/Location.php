@@ -1,3 +1,11 @@
+
+<!-- 
+Name: Sung Rung Yoo
+
+Description: 
+This file is for general user to view the a location page that lets user to insert,delete, insert, view
+-->
+
 <?php
 // Connect to the database
 $serverName = "localhost";

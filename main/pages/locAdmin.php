@@ -1,3 +1,12 @@
+<!-- 
+Name: Sung Rung Yoo
+
+Description: 
+This file is for admin user to view the activity page that shows location id to its name
+-->
+
+
+
 <?php
 // Connect to the database
 $serverName = "localhost";

@@ -1,3 +1,11 @@
+<!-- 
+Name: Sung Rung Yoo
+
+Description: 
+This file is for general user to view the activity page that lets admin to insert and delte
+-->
+
+
 <?php
 // Connect to the database
 $serverName = "localhost";
