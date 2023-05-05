@@ -30,7 +30,12 @@ if (mysqli_num_rows($result) > 0) {
   echo "No data found.";
 }
 
+// <!-- 
+// Name: Sung Rung Yoo
 
+// Description: 
+// This file address the add page for activity page
+// -->
 
 if (isset($_POST['act_name'])) {
     $act_name = $_POST['act_name'];

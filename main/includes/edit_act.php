@@ -1,3 +1,10 @@
+<!-- 
+// Name: Sung Rung Yoo
+
+// Description: 
+// This page allows admin user to edit activity from the admin activity page
+// -->
+
 <?php 
       
     $serverName = "localhost";

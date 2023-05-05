@@ -1,3 +1,11 @@
+
+<!-- 
+// Name: Sung Rung Yoo
+
+// Description: 
+// This page allows admin to add a location and go back to admin view location page where they can see
+// -->
+
 <?php
 $serverName = "localhost";
 $dBUsername = "root";

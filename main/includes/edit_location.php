@@ -1,3 +1,11 @@
+<!-- 
+// Name: Sung Rung Yoo
+
+// Description: 
+// This page allows anyone to edit location from location page if signed in
+// -->
+
+
 <?php 
       
     $serverName = "localhost";

@@ -1,3 +1,10 @@
+// <!-- 
+// Name: Sung Rung Yoo
+
+// Description: 
+// This page deletes location for location page
+// -->
+
 <?php
 // delete_location.php
 $serverName = "localhost";

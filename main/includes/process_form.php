@@ -1,3 +1,11 @@
+<!-- 
+// Name: Sung Rung Yoo
+
+// Description: 
+// This page allows user to add a location from location page
+// -->
+
+
 <?php
 $serverName = "localhost";
 $dBUsername = "root";
