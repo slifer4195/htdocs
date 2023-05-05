@@ -1,17 +1,25 @@
-<?php
+<!-- 
+Name: Jun Lee
 
+Description: 
+This file is to update login information on the profile page.
+-->
+
+<?php
+//   First, get the data from the profile-update form.
 if (isset($_POST["submit"])) {
     $firstName = $_POST["firstName-profile"];
     $lastName = $_POST["lastName-profile"];
     $email = $_POST["email-profile"];
-    $password = $_POST["password"];
-    $passwordRepeat = $_POST["passwordRepeat"];
+    $password = $_POST["password-profile"];
+    $passwordRepeat = $_POST["passwordRepeat-profile"];
     $age = $_POST["age-profile"];
 
+    // Connect to the database and functions
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
-    // error handling 
+    // Error handling 
     if (pwdMatch($password, $passwordRepeat) !== false) {
         header("location: ../pages/Profile.php?error=passwordsdontmatch");
         exit();

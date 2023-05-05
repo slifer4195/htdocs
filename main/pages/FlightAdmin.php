@@ -42,20 +42,20 @@
         <div class='flight-form'>
             <h1>Flights</h1>
             <form method="post" action="../includes/flightAdminCreate.inc.php">
-            <label for="flight-name">Flight Name:</label>
-            <input type="text" id="flight-name" name="flight_name">
+                <label for="flight-name">Flight Name:</label>
+                <input type="text" id="flight-name" name="flight_name">
 
-            <label for="flight-price">Flight Price:</label>
-            <input type="text" id="flight-price" name="flight_price">
+                <label for="flight-price">Flight Price:</label>
+                <input type="text" id="flight-price" name="flight_price">
 
-            <label for="location-id">Location ID:</label>
-            <input type="text" id="location-id" name="location_id">
+                <label for="location-id">Location ID:</label>
+                <input type="text" id="location-id" name="location_id">
 
-            <input type="submit" value="Submit">
+                <input type="submit" value="Submit">
             </form>
         </div>
 
-    <div class='item-display'>
+        <div class='item-display'>
             <h1>List of Flights</h1>
             <center>
                 <table class="flight-table">

@@ -1,3 +1,10 @@
+<!-- 
+Name: Jun Lee
+
+Description: 
+This file is profile page and shows the login informaion.
+-->
+
 <?php
 session_start();
 ?>

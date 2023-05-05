@@ -1,3 +1,10 @@
+<!-- 
+Name: Jun Lee
+
+Description: 
+This file is a sign-up page.
+-->
+
 <!doctype html>
 <html lang="en">
 

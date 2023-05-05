@@ -1,3 +1,16 @@
+<!-- 
+Name: Jun Lee
+
+Description: 
+This file is intended for users to delete their own accounts.
+-->
+
+<!--
+  First, connect to the database, and if it connects successfully, delete 
+  a user own account.
+  If it deletes successfully, show the message saying your request is 
+  completed, but if not, throw an error.
+  -->
 <?php
 session_start();
 

@@ -1,3 +1,11 @@
+<!-- 
+Name: Jun Lee
+
+Description: 
+This file is to update a specific row from the item table.
+
+-->
+
 <head>
     <style>
         .update-button {
@@ -12,6 +20,7 @@
 </head>
 
 <?php
+// Connect to the database
 $serverName = "localhost";
 $dBUsername = "root";
 $dBPassword = "";
@@ -27,6 +36,7 @@ $id = $_GET['updateid'];
 $weight = $_GET["weight"];
 $type = $_GET["type"];
 
+// Get the data from the item-update form
 if (isset($_POST["submit"])) {
     $itemtype = $_POST["item-update"];
     $ItemWeight = $_POST["weight-update"];
@@ -35,8 +45,8 @@ if (isset($_POST["submit"])) {
         $ItemWeight = $weight;
     }
 
+    // Execute a query
     $sql = "UPDATE Item SET ItemType= '$itemtype', ItemWeight = '$ItemWeight' WHERE ItemID = '$id'";
-
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
@@ -48,6 +58,7 @@ if (isset($_POST["submit"])) {
 }
 ?>
 
+<!-- Item-update form -->
 <div class='item-form'>
     <br><br><br>
     <form method="post">
