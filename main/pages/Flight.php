@@ -1,3 +1,8 @@
+<!-- 
+Name: Jessica Odutola
+Description: 
+This file is for users to view the flight page. It shows the list of flights available and allows users to join flights.
+-->
 <!doctype html>
 <html lang="en">
 

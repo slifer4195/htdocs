@@ -1,3 +1,9 @@
+<!-- 
+Name: Jessica Odutola
+Description: 
+This file is for admin to view the flight page. It shows the list of flights available and allows admin to join flights.
+It also allows admin to create, delete, and update flights.
+-->
 <!doctype html>
 <html lang="en">
 
