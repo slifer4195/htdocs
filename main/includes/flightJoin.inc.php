@@ -1,3 +1,8 @@
+<!-- 
+Name: Jessica Odutola
+Description: 
+This file is for allowing users to join flights and shows the list of flights they have joined.
+-->
 <?php
     session_start();
     $serverName = "localhost";

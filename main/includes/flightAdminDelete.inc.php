@@ -1,3 +1,8 @@
+<!-- 
+Name: Jessica Odutola
+Description: 
+This file is for admin to delete flights from their own list of flights.
+-->
 <?php
 session_start();
 

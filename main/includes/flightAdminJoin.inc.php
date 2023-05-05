@@ -1,3 +1,8 @@
+<!-- 
+Name: Jessica Odutola
+Description: 
+This file is for admin to join flights.
+-->
 <?php
     session_start();
     $serverName = "localhost";

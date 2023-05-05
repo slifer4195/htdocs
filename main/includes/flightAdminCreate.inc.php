@@ -1,3 +1,8 @@
+<!-- 
+Name: Jessica Odutola
+Description: 
+This file is for admin to create flights.
+-->
 <?php
 $serverName = "localhost";
 $dBUsername = "root";
