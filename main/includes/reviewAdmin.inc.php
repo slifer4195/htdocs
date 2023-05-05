@@ -1,3 +1,10 @@
+<!-- 
+Name: Jack Warham
+
+Description: 
+This file helps admins insert a review from the admin review page.
+
+-->
 <?php
 
 if (isset($_POST["submit"])) {
@@ -8,7 +15,7 @@ if (isset($_POST["submit"])) {
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
-    createReview($conn, $userID, $ActivityID, $rating);
+    createReviewAdmin($conn, $userID, $ActivityID, $rating);
 } else {
     header("location: ../pages/AdminReview.php");
     exit();

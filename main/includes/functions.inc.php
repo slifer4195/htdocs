@@ -197,7 +197,7 @@ function createItem($conn, $userID, $itemType, $weight)
 }
 
 // Name: Jack Warham
-// 
+// Creates item then redirects to admin item page
 function createItemAdmin($conn, $userID, $itemType, $weight)
 {
     $sql = "INSERT INTO Item (UserID, ItemType, ItemWeight) VALUES (?, ?, ?);";
@@ -215,13 +215,13 @@ function createItemAdmin($conn, $userID, $itemType, $weight)
 }
 
 // Name: Jack Warham
-// 
+// creates review using userid, activityid, and rating then redirects to user review page
 function createReview($conn, $userID, $ActivityID, $Rating)
 {
     $sql = "INSERT INTO Reviews (UserID, ActivityID, Rating) VALUES (?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../pages/Item.php?error=stmtfailed");
+        header("location: ../pages/Review.php?error=stmtfailed");
         exit();
     }
 
@@ -229,6 +229,24 @@ function createReview($conn, $userID, $ActivityID, $Rating)
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ../pages/Review.php?error=none");
+    exit();
+}
+
+// Name: Jack Warham
+// creates review using userid, activityid, and rating then redirects to admin review page
+function createReviewAdmin($conn, $userID, $ActivityID, $Rating)
+{
+    $sql = "INSERT INTO Reviews (UserID, ActivityID, Rating) VALUES (?, ?, ?);";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../pages/AdminReview.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "iii", $userID, $ActivityID, $Rating);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: ../pages/AdminReview.php?error=none");
     exit();
 }
 
@@ -281,7 +299,7 @@ function createUserAdmin($conn, $firstName, $lastName, $email, $age, $password)
 }
 
 // Name: Jack Warham
-// 
+// deletes any item given a corresponding user id
 function deleteItems($conn, $id)
 {
     $sql = "DELETE FROM Items WHERE UserID=$id";
@@ -289,7 +307,7 @@ function deleteItems($conn, $id)
 }
 
 // Name: Jack Warham
-// 
+// deletes any review given a corresponding user id
 function deleteReviewsUser($conn, $id)
 {
     $sql = "DELETE FROM Reviews WHERE UserID=$id";
@@ -297,7 +315,7 @@ function deleteReviewsUser($conn, $id)
 }
 
 // Name: Jack Warham
-// 
+// deletes any review given a corresponding activity id
 function deleteReviewsActivity($conn, $id)
 {
     $sql = "DELETE FROM Reviews WHERE ActivityID=$id";

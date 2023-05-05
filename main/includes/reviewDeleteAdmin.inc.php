@@ -1,3 +1,10 @@
+<!-- 
+Name: Jack warham
+
+Description: 
+This file is to delete a specific row from the review table then redirect to the admin page.
+
+-->
 <?php
 
 $serverName = "localhost";

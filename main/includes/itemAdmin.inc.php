@@ -1,3 +1,11 @@
+<!-- 
+Name: Jack Warham
+
+Description: 
+This file helps admins insert an item from the admin item page.
+
+-->
+
 <?php
 
 if (isset($_POST["submit"])) {

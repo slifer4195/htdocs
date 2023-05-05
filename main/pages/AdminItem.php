@@ -1,3 +1,10 @@
+<!-- 
+Name: Jack Warham
+
+Description: 
+This file is the admin item page and shows all users items.
+Admins can add, delete, or update any user's items.
+-->
 <?php
 session_start();
 // Connect to the database
@@ -12,9 +19,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// aa
-
-// Build the SQL query to select all data from the Location table
+// Build the SQL query to select all data from the users table
 $sql = "SELECT * FROM Users";
 // $sql2 = "SELECT * FROM Activity";
 
@@ -206,6 +211,7 @@ if (mysqli_num_rows($result) >= 0) {
 <body class="index">
     <div id="fb-root"></div>
 
+    <!-- Navigation bar -->
     <header class="header contain-to-grid">
         <?php
         include '../NavigationBar.php'
@@ -213,6 +219,7 @@ if (mysqli_num_rows($result) >= 0) {
     </header>
 
     <div class="bg-item">
+        <!-- Creating item form -->
         <div class='item-form'>
             <h1>Item</h1>
             <form action="../includes/itemAdmin.inc.php" method="post">
@@ -257,9 +264,10 @@ if (mysqli_num_rows($result) >= 0) {
                 </center>
             </form>
         </div>
-
+        
+        <!-- Display the items in the list -->
         <div class='item-display'>
-            <h1>Your Item List</h1>
+            <h1>All Items List</h1>
             <center>
                 <table class="item-table">
                     <thead>
@@ -273,6 +281,7 @@ if (mysqli_num_rows($result) >= 0) {
                     </thead>
                     <tbody>
                         <?php
+                        // Connect to the database and get data
                         $serverName = "localhost";
                         $dBUsername = "root";
                         $dBPassword = "";
@@ -284,8 +293,11 @@ if (mysqli_num_rows($result) >= 0) {
                             die("Connection failed: " . mysqli_connect_error());
                         }
 
+                        // Execute a query
                         $sql = "SELECT * FROM Item";
                         $result = mysqli_query($conn, $sql);
+
+                        // If it successfully executes, get data from the database
                         if ($result) {
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $UserID = $row['UserID'];
