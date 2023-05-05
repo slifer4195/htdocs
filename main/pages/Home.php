@@ -132,8 +132,14 @@ session_start();
             <?php
             // check if the user actullay logged in 
             if (isset($_SESSION["useremail"])) {
-                echo "<div class='welcomeFont'>" . $_SESSION["userfirstname"] . ":)</div>";
-                echo "<div class='nameFont'>Welcome to AnyWhere</div>";
+                if (isset($_SESSION["usertype"])) {
+                    echo "<div class='welcomeFont'>" . $_SESSION["userfirstname"] . " :)</div>";
+                    echo "<div class='nameFont'>(Admin)</div>";
+                    echo "<div class='nameFont'>Welcome to AnyWhere</div>";
+                } else {
+                    echo "<div class='welcomeFont'>" . $_SESSION["userfirstname"] . ":)</div>";
+                    echo "<div class='nameFont'>Welcome to AnyWhere</div>";
+                }
             } else {
                 echo "<h1>AnyWhere</h1>";
                 echo "<p>Makes Travel Easier</p>";
