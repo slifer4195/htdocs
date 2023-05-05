@@ -164,6 +164,7 @@ session_start();
 <body class="index">
     <div id="fb-root"></div>
 
+    <!-- Navigation Bar -->
     <header class="header contain-to-grid">
         <?php
         include '../NavigationBar.php'
@@ -171,11 +172,13 @@ session_start();
     </header>
 
     <div class="bg">
+        <!-- Profile form -->
         <div class='profile-form'>
             <h1>Your Profile</h1>
             <form action="../includes/profile.inc.php" method="post">
                 <center>
                     <?php
+                    // Error handling
                     if (isset($_GET["error"])) {
                         if ($_GET["error"] == "emptyinput") {
                             echo "<p style='color:black; font-weight:bold; letter-spacing: 0.5px; font-size: 18px;'>Fill in all fields!</p>";
@@ -183,7 +186,7 @@ session_start();
                     }
                     ?>
                     <?php
-                    // check if the user actullay logged in 
+                    // Check if the user actullay logged in 
                     if (isset($_SESSION["useremail"])) {
                         echo ("<p class='instruction'>First Name</p> 
                         <input type='text' name='firstName-profile' style='width: 220px'" . "value={$_SESSION['userfirstname']}>");
@@ -208,6 +211,7 @@ session_start();
                     }
                     ?>
                     <?php
+                    // Error handling
                     if (isset($_GET["error"])) {
                         if ($_GET["error"] == "passwordsdontmatch") {
                             echo "<p style='color:black'>Passwords do not match!</p>";

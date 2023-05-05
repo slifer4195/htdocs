@@ -136,7 +136,7 @@ session_start();
     <div class="bg">
         <div class='text-hero'>
             <?php
-            // check if the user actullay logged in 
+            // Check if the user actullay logged in 
             if (isset($_SESSION["useremail"])) {
                 if (isset($_SESSION["usertype"])) {
                     echo "<div class='welcomeFont'>" . $_SESSION["userfirstname"] . " :)</div>";
