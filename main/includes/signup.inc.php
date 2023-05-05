@@ -1,5 +1,12 @@
-<?php
+<!-- 
+Name: Jun Lee
 
+Description: 
+This file address the sign-up process and the error handling.
+-->
+
+<?php
+//   First, get the data from the sign-up form
 if (isset($_POST["submit"])) {
     $firstName = $_POST["firstName"];
     $lastName = $_POST["lastName"];
@@ -8,10 +15,11 @@ if (isset($_POST["submit"])) {
     $passwordRepeat = $_POST["passwordRepeat"];
     $age = $_POST["age"];
 
+    // Connect to the database and functions
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
-    // error handling
+    // Error handling
     if (emptyInputSignup($firstName, $lastName, $email, $password, $passwordRepeat, $age) !== false) {
         header("location: ../pages/SignUp.php?error=emptyinput");
         exit();
@@ -34,9 +42,7 @@ if (isset($_POST["submit"])) {
     }
 
     createUser($conn, $firstName, $lastName, $email, $age, $password);
-
     echo "<script type=\"text/javascript\">window.alert('You have successfully signed up!');window.location.href = '../pages/SignIn.php';</script>";
-
     exit();
 } else {
     header("location: ../pages/SignUp.php");

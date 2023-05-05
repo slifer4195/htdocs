@@ -1,6 +1,16 @@
+<!-- 
+Name: Jun Lee, Jack Warham
+
+Description: 
+This file is a collection of functions used in various places.
+
+-->
+
 <?php
 session_start();
 
+// Name: Jun Lee
+// Error Handling for the empty input in the sign-up page
 function emptyInputSignup($firstName, $lastName, $email, $password, $passwordRepeat, $age)
 {
     $result = false;
@@ -12,6 +22,8 @@ function emptyInputSignup($firstName, $lastName, $email, $password, $passwordRep
     return $result;
 }
 
+// Name: Jun Lee
+// Error Handling for the invalid age in the sign-up page
 function invalidAge($age)
 {
     $result = false;
@@ -24,6 +36,8 @@ function invalidAge($age)
     return $result;
 }
 
+// Name: Jun Lee
+// Error Handling for the invalid email in the sign-up page
 function invalidUid($email)
 {
     $result = false;
@@ -35,6 +49,9 @@ function invalidUid($email)
     return $result;
 }
 
+// Name: Jun Lee
+// Error Handling to check if the pasword and the repeated passwrod are 
+// the same
 function pwdMatch($password, $passwordRepeat)
 {
     $result = false;
@@ -46,6 +63,8 @@ function pwdMatch($password, $passwordRepeat)
     return $result;
 }
 
+// Name: Jun Lee
+// Error Handling to check if the email user entered already exsists
 function emailExists($conn, $email)
 {
     $sql = "SELECT * FROM Users WHERE Email = ?;";
@@ -69,6 +88,8 @@ function emailExists($conn, $email)
     mysqli_stmt_close($stmt);
 }
 
+// Name: Jun Lee
+// Create a user with the sign-up information
 function createUser($conn, $firstName, $lastName, $email, $age, $password)
 {
     $sql = "INSERT INTO Users (FirstName, LastName, Email, Age, UserPassword) VALUES (?, ?, ?, ?, ?);";
@@ -85,6 +106,8 @@ function createUser($conn, $firstName, $lastName, $email, $age, $password)
     mysqli_stmt_close($stmt);
 }
 
+// Name: Jun Lee
+// Error Handling for the empty input in the sign-in page
 function emptyInputLogin($email, $password)
 {
     $result = false;
@@ -96,6 +119,8 @@ function emptyInputLogin($email, $password)
     return $result;
 }
 
+// Name: Jun Lee
+// Log in with the log in information
 function loginUser($conn, $email, $password)
 {
     $emailExists = emailExists($conn, $email);
@@ -126,6 +151,8 @@ function loginUser($conn, $email, $password)
     }
 }
 
+// Name: Jun Lee
+// Error Handling for the empty input in the item page
 function emptyInputItem($itemType, $weight)
 {
     $result = false;
@@ -137,6 +164,8 @@ function emptyInputItem($itemType, $weight)
     return $result;
 }
 
+// Name: Jun Lee
+// Error Handling for the invalid item weight in the item page
 function invalidWeight($weight)
 {
     $result = false;
@@ -149,6 +178,8 @@ function invalidWeight($weight)
     return $result;
 }
 
+// Name: Jun Lee
+// Create item with the item information
 function createItem($conn, $userID, $itemType, $weight)
 {
     $sql = "INSERT INTO Item (UserID, ItemType, ItemWeight) VALUES (?, ?, ?);";
@@ -165,6 +196,8 @@ function createItem($conn, $userID, $itemType, $weight)
     exit();
 }
 
+// Name: Jack Warham
+// 
 function createItemAdmin($conn, $userID, $itemType, $weight)
 {
     $sql = "INSERT INTO Item (UserID, ItemType, ItemWeight) VALUES (?, ?, ?);";
@@ -181,6 +214,8 @@ function createItemAdmin($conn, $userID, $itemType, $weight)
     exit();
 }
 
+// Name: Jack Warham
+// 
 function createReview($conn, $userID, $ActivityID, $Rating)
 {
     $sql = "INSERT INTO Reviews (UserID, ActivityID, Rating) VALUES (?, ?, ?);";
@@ -197,6 +232,8 @@ function createReview($conn, $userID, $ActivityID, $Rating)
     exit();
 }
 
+// Name: Jun Lee
+// Update the profile with the updated profile information
 function updateProfile($conn, $firstName, $lastName, $password, $email, $age)
 {
     $id = $_SESSION["userid"];
@@ -208,14 +245,19 @@ function updateProfile($conn, $firstName, $lastName, $password, $email, $age)
     $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
 
     $sql = "UPDATE Users SET FirstName= '$firstName', LastName='$lastName', Email='$email', Age='$age' WHERE UserID= '$id'";
-
     $result = mysqli_query($conn, $sql);
+
+    if ($password != "") {
+        $sql2 = "UPDATE Users SET UserPassword = '$hashedPwd' WHERE UserID = '$id'";
+        $result2 = mysqli_query($conn, $sql2);
+    }
 
     if ($result) {
         $_SESSION["userfirstname"] = $firstName;
         $_SESSION["userlastname"] = $lastName;
         $_SESSION["useremail"] = $email;
         $_SESSION["userage"] = $age;
+        $_SESSION["userpassword"] = $password;
         header("location: ../pages/Profile.php?error=none");
         exit();
     } else {
@@ -223,6 +265,8 @@ function updateProfile($conn, $firstName, $lastName, $password, $email, $age)
     }
 }
 
+// Name: Jun Lee
+// Create a admin account
 function createUserAdmin($conn, $firstName, $lastName, $email, $age, $password)
 {
     $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
@@ -236,18 +280,24 @@ function createUserAdmin($conn, $firstName, $lastName, $email, $age, $password)
     }
 }
 
+// Name: Jack Warham
+// 
 function deleteItems($conn, $id)
 {
     $sql = "DELETE FROM Items WHERE UserID=$id";
     mysqli_query($conn, $sql);
 }
 
+// Name: Jack Warham
+// 
 function deleteReviewsUser($conn, $id)
 {
     $sql = "DELETE FROM Reviews WHERE UserID=$id";
     mysqli_query($conn, $sql);
 }
 
+// Name: Jack Warham
+// 
 function deleteReviewsActivity($conn, $id)
 {
     $sql = "DELETE FROM Reviews WHERE ActivityID=$id";

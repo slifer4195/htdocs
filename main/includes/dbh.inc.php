@@ -1,5 +1,13 @@
-<?php
+<!-- 
+Name: Jun Lee
 
+Description: 
+This file is to connect with database.
+
+-->
+
+<?php
+// Connect to the database
 $serverName = "localhost";
 $dBUsername = "root";
 $dBPassword = "";

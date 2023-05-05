@@ -1,3 +1,10 @@
+<!-- 
+Name: Jun Lee
+
+Description: 
+This file is to verify if a user has a passcode to sign up as an admin.
+-->
+
 <head>
     <style>
     .update-button {
@@ -23,7 +30,7 @@ if (isset($_POST["submit"])) {
     <br><br><br>
     <form method="post">
         <center>
-            <p class="instruction">Password</p>
+            <p class="instruction">Passcode</p>
             <input type="text" name="admin-signup-password" style="width: 220px">
             <br><br><br>
             <button type="submit" name="submit" class="update-button">

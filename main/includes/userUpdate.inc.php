@@ -1,3 +1,10 @@
+<!-- 
+Name: Jun Lee
+
+Description: 
+This file is for the admin to update user's login information.
+-->
+
 <head>
     <style>
         .update-button {
@@ -9,6 +16,12 @@
     </style>
 </head>
 
+<!--
+  First, connect to the database, and if it connects successfully, get the
+  login information to update the user's profile. 
+  If it updates successfully, go to the admin account management page, but 
+  if not, throw an error.
+  -->
 <?php
 $serverName = "localhost";
 $dBUsername = "root";
@@ -27,7 +40,6 @@ $LastName = $_GET["lastname"];
 $Email = $_GET["email"];
 $Age = $_GET["age"];
 
-
 if (isset($_POST["submit"])) {
     $firstname = $_POST["firstname-update"];
     $lastname = $_POST["lastname-update"];
@@ -39,7 +51,6 @@ if (isset($_POST["submit"])) {
     }
 
     $sql = "UPDATE Users SET FirstName= '$firstname', LastName = '$lastname', Email = '$email', Age ='$age' WHERE UserID = '$id'";
-
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
@@ -51,6 +62,9 @@ if (isset($_POST["submit"])) {
 }
 ?>
 
+<!--
+  This is an update form that the admin can use to update a user's profile.
+  -->
 <div class='item-form'>
     <br><br><br>
     <form method="post">
