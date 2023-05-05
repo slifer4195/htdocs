@@ -153,6 +153,9 @@
             <div class="welcomeFont-admin">
                 <a class="welcomeFont-admin-link" href="/main/pages/AdminReview.php">Review Management</a>
             </div>
+            <div class="welcomeFont-admin">
+                <a class="welcomeFont-admin-link" href="/main/pages/FlightAdmin.php">Flight Management</a>
+            </div>
             <!-- <div class='nameFont-admin'>Welcome to AnyWhere</div> -->
         </div>
     </div>
